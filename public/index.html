@@ -5,8 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Monitoring Exercise</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 </head>
 <body>
     <h1>By George you've done it!</h1>
+    <input type="text" placeholder="Type name here"/>
+    <button>Add Student</button>
+    <script>
+        const addForm = document.querySelector('form')
+        const colorInput = document.querySelector('input')
+        const container = document.querySelector('section')
+
+        axios.post('/api/colors', {color: colorInput.value})
+            .then(res => {
+                    container.innerHTML = ''
+                    colorInput.value = ''
+
+                    res.data.forEach(color => {
+                        container.innerHTML += `<p>${color}</p>`
+                    })
+                })
+    </script>
 </body>
 </html>
