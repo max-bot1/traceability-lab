@@ -18,6 +18,18 @@ app.get('/', (req, res) => {
     rollbar.info('html file served successfully')
 })
 
+let colors = []
+
+app.post('/api/colors', (req, res) => {
+    let color = req.body
+    color = color.trim()
+
+    colors.push(color)
+    rollbar.log('color successfully added')
+    
+    res.status(200).send(colors)
+})
+
 app.use(rollbar.errorHandler())
 
 const port = process.env.PORT || 4545
