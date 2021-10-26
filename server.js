@@ -24,9 +24,6 @@ let colors = []
 
 app.post('/api/colors', (req, res) => {
     let color = req.body
-    // color = color.trim()
-
-    addColor(color)
 
     if(index === -1 && color !== ''){
         colors.push(color)
