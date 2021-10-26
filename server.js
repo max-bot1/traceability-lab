@@ -20,19 +20,25 @@ app.get('/', (req, res) => {
 })
 
 let colors = []
-// function addColor (color){
-//     colors.push(color)
-// }
+
 
 app.post('/api/colors', (req, res) => {
     let color = req.body
-    color = color.trim()
+    // color = color.trim()
 
     addColor(color)
 
-    rollbar.log('color successfully added')
-    
-    res.status(200).send(colors)
+    if(index === -1 && color !== ''){
+        colors.push(color)
+        rollbar.log('Color added successfully', {author: 'Max', type: 'manual entry'})
+        res.status(200).send(colors)
+       } else if (color === '') {
+           rollbar.error('No color given')
+           res.status(400).send('Must provide a color')
+       } else {
+           rollbar.critical('Color already exists ')
+           res.status(400).send('Color already exists')
+       }
 })
 
 app.use(rollbar.errorHandler())
