@@ -11,7 +11,7 @@
 <body>
     <h1>By George you've done it!</h1>
     <input type="text" placeholder="Type name here"/>
-    <button>Add Student</button>
+    <button>Add Color</button>
     <script>
         const addForm = document.querySelector('form')
         const colorInput = document.querySelector('input')
@@ -26,6 +26,7 @@
                         container.innerHTML += `<p>${color}</p>`
                     })
                 })
+                addForm.addEventListener('submit', submitHandler)
     </script>
 </body>
 </html>
