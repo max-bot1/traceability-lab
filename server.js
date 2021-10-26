@@ -25,6 +25,9 @@ let colors = []
 app.post('/api/colors', (req, res) => {
     let color = req.body
 
+    const index = colors.findIndex(colorName => colorName === color)
+
+
     if(index === -1 && color !== ''){
         colors.push(color)
         rollbar.log('Color added successfully', {author: 'Max', type: 'manual entry'})
