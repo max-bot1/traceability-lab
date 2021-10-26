@@ -9,6 +9,7 @@ let rollbar = new Rollbar({
     captureUncaught: true,
     captureUncaught: true
 })
+rollbar.log("Hello world!")
 
 const app = express()
 app.use(express.json())
@@ -28,7 +29,7 @@ app.post('/api/colors', (req, res) => {
     color = color.trim()
 
     addColor(color)
-    
+
     rollbar.log('color successfully added')
     
     res.status(200).send(colors)
