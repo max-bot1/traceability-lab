@@ -19,17 +19,19 @@
         const addForm = document.querySelector('form')
         const colorInput = document.querySelector('input')
         const container = document.querySelector('section')
+        function submitHandler () {
+            e.preventDefault()
+            axios.post('/api/colors', {color: colorInput.value})
+                 .then(res => {
+                     container.innerHTML = ''
+                     colorInput.value = ''
 
-        axios.post('/api/colors', {color: colorInput.value})
-            .then(res => {
-                    container.innerHTML = ''
-                    colorInput.value = ''
-
-                    res.data.forEach(color => {
-                        container.innerHTML += `<p>${color}</p>`
-                    })
-                })
-                addForm.addEventListener('submit', submitHandler)
+                     res.data.forEach(color => {
+                     container.innerHTML += `<p>${color}</p>`
+                     })
+                 })
+                 addForm.addEventListener('submit', submitHandler)
+            }
     </script>
 </body>
 </html>
