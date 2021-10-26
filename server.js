@@ -19,12 +19,16 @@ app.get('/', (req, res) => {
 })
 
 let colors = []
+// function addColor (color){
+//     colors.push(color)
+// }
 
 app.post('/api/colors', (req, res) => {
     let color = req.body
     color = color.trim()
 
-    colors.push(color)
+    addColor(color)
+    
     rollbar.log('color successfully added')
     
     res.status(200).send(colors)
